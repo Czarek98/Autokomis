@@ -1,4 +1,6 @@
-package com.company.CezaryBohdanowicz;
+package com.company.CezaryBohdanowicz.Human;
+
+import com.company.CezaryBohdanowicz.Car;
 
 import java.util.HashSet;
 import java.util.Set;
