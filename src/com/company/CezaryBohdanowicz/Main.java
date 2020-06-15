@@ -1,95 +1,164 @@
 package com.company.CezaryBohdanowicz;
 
+import com.company.CezaryBohdanowicz.Human.Player;
+
 import java.awt.*;
 import java.util.Scanner;
 
 public class Main {
-    static boolean exit;
 
     public static void main(String[] args) {
 
+        int mainSelect = 0;
+        int select;
+        int numberOfTurns = 0;
+        Scanner input = new Scanner(System.in);
 
-        Menu menu = new Menu();
-        printHeader();
-        while (!exit) {
-            printMenu();
-            int choice = getMenuChoice();
-            performAction(choice);
-        }
-
-    }
-
-        private static void printHeader() {
-            System.out.println("+-----------------------------------+");
-            System.out.println("|          Car Dealership           |");
-            System.out.println("|              GAME                 |");
-            System.out.println("+-----------------------------------+");
-        }
-
-        private static void printMenu() {
-            displayHeader("Please make a selection");
-            System.out.println("1) List of car to buy");
-            System.out.println("2) Your list of car");
-            System.out.println("3) Your account balance");
-            System.out.println("4) Repair your car");
-            System.out.println("5) Number of transactions");
-            System.out.println("6) Price list");
+        do {
+            System.out.println("1) Show list of cars to buy ");
+            System.out.println("2) Show " + "Player.getFirstname" + " list of cars ");
+            System.out.println("3) Players account");
+            System.out.println("4) Clients");
+            System.out.println();
+            System.out.println("Turn: " + numberOfTurns);
+            System.out.println();
             System.out.println("0) Exit");
-        }
+            mainSelect = input.nextInt();
 
-        private static int getMenuChoice() {
-            Scanner keyboard = new Scanner(System.in);
-            int choice = -1;
-            do {
-                System.out.print("Enter your choice: ");
-                try {
-                    choice = Integer.parseInt(keyboard.nextLine());
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid selection. Numbers only please.");
-                }
-                if (choice < 0 || choice > 4) {
-                    System.out.println("Choice outside of range. Please chose again.");
-                }
-            } while (choice < 0 || choice > 4);
-            return choice;
-        }
+            switch (mainSelect) {
 
-        private static void performAction(int choice) {
-            switch (choice) {
                 case 0:
-                    System.out.println("Thank you for using our application.");
-                    System.exit(0);
+                    System.out.println("You lost your progress and end game.");
                     break;
                 case 1:
-                    //function
+                    do {
+                        System.out.println("1) Show cars");
+                        System.out.println("2) Back");
+                        select = input.nextInt();
+                        switch (select) {
+                            case 1:
+                                System.out.println("List of cars");
+                                System.out.println("Select car, input");
+                                System.out.println("Display money");
+                                System.out.println("When select here start function to buy a car and number of turns go up");
+                                break;
+                            case 2:
+                                System.out.println("Previous menu: ");
+                                break;
+                            default:
+                                System.out.println("Error, wrong number");
+                        }
+                    } while (select != 2);
                     break;
                 case 2:
-                    //function
+                    do {
+                        System.out.println("show cars");
+                        System.out.println("1) Sell car");
+                        System.out.println("2) Wash car");
+                        System.out.println("3) Repair car");
+                        System.out.println("4) Back");
+                        select = input.nextInt();
+                        switch (select) {
+                            case 1:
+                                select = input.nextInt();
+                                System.out.println("input, to select a car to sell");
+                                System.out.println("sell function start here");
+                                break;
+                            case 2:
+                                select = input.nextInt();
+                                System.out.println("input, to select a car to wash");
+                                System.out.println("wash function start here");
+                                break;
+                            case 3:
+                                select = input.nextInt();
+                                System.out.println("input, to select a car to repair");
+                                System.out.println("repair function start here");
+                                break;
+                            case 4:
+                                System.out.println("Previous menu: ");
+                                break;
+                            default:
+                                System.out.println("Error, wrong number");
+
+                        }
+                    } while (select != 4);
                     break;
                 case 3:
-                    //function
+                    do {
+                        System.out.println("1) Check your bank account");
+                        System.out.println("2) Transaction history");
+                        System.out.println("3) Advertisements section");
+                        System.out.println("4) Back");
+                        select = input.nextInt();
+                        switch (select) {
+                            case 1:
+                                System.out.println("You have: " + "player.getCash())");
+                                break;
+                            case 2:
+                                System.out.println("Player.getFirstname transaction history: ");
+                                System.out.println("player.transactionHistory");
+                                break;
+                            case 3:
+                                do {
+                                    System.out.println("Select the type of ad");
+                                    System.out.println("Your money: " + " player.getCash())");
+                                    System.out.println("1) Newspaper ad");
+                                    System.out.println("2) Internet ad");
+                                    System.out.println("3) Back");
+                                    select = input.nextInt();
+                                    switch (select) {
+                                        case 1:
+                                            System.out.println("Function that add 2 potential clients, more cost");
+                                            System.out.println("Increase number of turns");
+                                            break;
+                                        case 2:
+                                            System.out.println("Function that add 1 potential clients, less cost");
+                                            System.out.println("Increase number of turns");
+                                            break;
+                                        case 3:
+                                            System.out.println("Back to previous menu: ");
+                                            break;
+                                        default:
+                                            System.out.println("Error, wrong number");
+                                    }
+                                } while (select != 3);
+                                break;
+                            case 4:
+                                System.out.println("back to previous menu");
+                                break;
+                            default:
+                                System.out.println("Error, wrong number");
+                        }
+                    } while (select != 4);
                     break;
                 case 4:
-                    //function
-                    break;
-                default:
-                    System.out.println("Unknown error has occured.");
-            }
-        }
+                    do {
+                        System.out.println("1) Clients");
+                        System.out.println("2) Back");
+                        select = input.nextInt();
+                        switch (select) {
+                            case 1:
+                                System.out.println("Your potential customers: ");
+                                System.out.println("clients list");
+                                break;
+                            case 2:
+                                System.out.println("Previous menu: ");
+                                break;
 
-        private static void displayHeader(String message){
-            System.out.println();
-            int width = message.length() + 6;
-            StringBuilder sb = new StringBuilder();
-            sb.append("+");
-            for(int i = 0; i < width; ++i){
-                sb.append("-");
+                            default:
+                                System.out.println("Invalid number");
+                        }
+                    } while (select != 2);
+                    break;
+
+                default:
+                    System.out.println("Invalid number");
             }
-            sb.append("+");
-            System.out.println(sb.toString());
-            System.out.println("|   " + message + "   |");
-            System.out.println(sb.toString());
-        }
+        } while (mainSelect != 0);
+
 
     }
+
+
+}
 
