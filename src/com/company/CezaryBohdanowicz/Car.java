@@ -1,18 +1,26 @@
 package com.company.CezaryBohdanowicz;
 
 import com.company.CezaryBohdanowicz.Human.Human;
+import org.w3c.dom.ls.LSOutput;
 
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Car implements Sell{
+public class Car implements Sell {
 
     public String brand;
-    public final Integer mileage;
+    public Double mileage;
     public String color;
-    public final Double price;
-    static String PREMIUM = "premium";
+    public String segment;
+    public String premium = "Premium";
+    public String standard = "Standard";
+    public String budget = "Budget";
+    public Double price;
+    public Double priceWithTax;
+    public ArrayList<Human> owners = new ArrayList<>();
+    Double randomMileage = ThreadLocalRandom.current().nextDouble(1.0, 400000.0 + 1);
+    public String brokenpart;
 
     public String getBrand() {
         return brand;
@@ -22,7 +30,7 @@ public class Car implements Sell{
         this.brand = brand;
     }
 
-    public Integer getMileage() {
+    public Double getMileage() {
         return mileage;
     }
 
@@ -46,18 +54,13 @@ public class Car implements Sell{
         this.brokenpart = brokenpart;
     }
 
-    static String STANDARD = "standard";
-    static String BUDGET = "budget";
-    public ArrayList<Human> owners = new ArrayList<Human>();
-    Double randomMileage = ThreadLocalRandom.current().nextDouble(1.0, 400000.0 + 1);
-    public String brokenpart;
-
-    public Car(String brand, Integer mileage, String color, Double price, String brokenpart) {
-        this.brand = brand;
-        this.mileage = mileage;
-        this.color = color;
-        this.price = price;
+    public Car() {
+        this.brand = carGenerator();
+        this.mileage = randomMileage;
+        this.color = colorGenerator();
+        this.price = setValue();
         this.brokenpart = brokenpart;
+        this.segment = setSegment();
 
     }
 
@@ -89,14 +92,25 @@ public class Car implements Sell{
 
     public String setSegment() {
         if (this.brand.equals("Fiat") || this.brand.equals("Skoda") || this.brand.equals("Opel") || this.brand.equals("Ford") || this.brand.equals("Volkswagen")) {
-            return BUDGET;
+            return budget;
         }
         if (this.brand.equals("Mercedes") || this.brand.equals("BMW") || this.brand.equals("Audi") || this.brand.equals("Alfa romeo")) {
-            return STANDARD;
+            return standard;
         } else {
-            return PREMIUM;
+            return premium;
         }
 
+    }
+
+    public Double setValue() {
+        if (this.segment == "Premium")
+            return randomPremium;
+        if (this.segment == "Standard")
+            return randomStandard;
+        if (this.segment == "Budget")
+            return randomBudget;
+        else
+            return 0.0;
     }
 
     Double randomBudget = ThreadLocalRandom.current().nextDouble(5000.0, 50000.0 + 1);
