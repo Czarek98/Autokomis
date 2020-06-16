@@ -61,7 +61,7 @@ public class Car {
         this.segment = setSegment();
         this.color = colorGenerator();
         this.price = setValue();
-        this.brokenpart = brokenpart;
+        this.brokenpart = brokenPartsGenerator();
 
     }
 
@@ -83,10 +83,10 @@ public class Car {
     }
 
 
-    public String[] parts = {"brakes", "suspension", "engine", "body", "shifting gear"};
 
-    public String brokenParts() {
+    public String brokenPartsGenerator() {
         Random random = new Random();
+        String[] parts = {"brakes", "suspension", "engine", "body", "shifting gear"};
 
         return brokenpart = parts[random.nextInt(parts.length)];
     }

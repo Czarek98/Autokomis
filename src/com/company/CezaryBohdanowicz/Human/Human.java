@@ -8,7 +8,7 @@ import java.util.Set;
 public class Human {
     public String firstname;
     public String lastname;
-    private static Double cash = 10000.0;
+    private  Double cash;
     public Set<Car> cars;
 
 
@@ -28,8 +28,8 @@ public class Human {
         this.lastname = lastname;
     }
 
-    public static Double getCash() {
-        return cash;
+    public Double getCash() {
+        return this.cash;
     }
 
     public void setCash(Double cash) {
