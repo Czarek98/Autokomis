@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Car implements Sell {
+public class Car {
 
     public String brand;
     public Double mileage;
@@ -55,12 +55,13 @@ public class Car implements Sell {
     }
 
     public Car() {
+
         this.brand = carGenerator();
         this.mileage = randomMileage;
+        this.segment = setSegment();
         this.color = colorGenerator();
         this.price = setValue();
         this.brokenpart = brokenpart;
-        this.segment = setSegment();
 
     }
 
@@ -117,9 +118,4 @@ public class Car implements Sell {
     Double randomStandard = ThreadLocalRandom.current().nextDouble(51000.0, 120000.0 + 1);
     Double randomPremium = ThreadLocalRandom.current().nextDouble(121000.0, 1000000.0 + 1);
 
-
-    @Override
-    public void Saleable(Human player, Human client, Double price) throws Exception {
-
-    }
 }

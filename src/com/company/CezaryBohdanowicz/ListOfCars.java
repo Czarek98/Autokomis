@@ -13,6 +13,12 @@ public class ListOfCars {
         this.listOfCars = new HashSet<Car>();
     }
 
+    public void addCar(){
+        this.listOfCars.add(new Car());
+    }
 
+    public void removeCar(Car car){
+        this.listOfCars.remove(car);
+    }
 
 }
