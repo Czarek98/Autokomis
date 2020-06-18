@@ -19,7 +19,7 @@ public class Client extends Human {
 
     public String  nameClientGenerator(){
         Random random = new Random();
-        String[] clientNames= {"Tomek", "Ania", "Czarek", "Sebastian", "Mirek", "Janusz", "Grażyna"};
+        String[] clientNames= {"Tomek", "Ania", "Czarek", "Sebastian", "Mirek", "Janusz", "Grażyna", "Basia", "Arek", "Adam"};
         return firstname = clientNames[random.nextInt(clientNames.length)];
     }
 }

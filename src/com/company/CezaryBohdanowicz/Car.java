@@ -20,7 +20,7 @@ public class Car {
     public Double priceWithTax;
     public ArrayList<Human> owners = new ArrayList<>();
     Double randomMileage = ThreadLocalRandom.current().nextDouble(1.0, 400000.0 + 1);
-    public String brokenpart;
+   // public String brokenpart;
 
     public String getBrand() {
         return brand;
@@ -61,7 +61,7 @@ public class Car {
         this.segment = setSegment();
         this.color = colorGenerator();
         this.price = setValue();
-        this.brokenpart = brokenPartsGenerator();
+        this.brokenpart = brokePart();
 
     }
 
@@ -82,15 +82,6 @@ public class Car {
 
     }
 
-
-
-    public String brokenPartsGenerator() {
-        Random random = new Random();
-        String[] parts = {"brakes", "suspension", "engine", "body", "shifting gear"};
-
-        return brokenpart = parts[random.nextInt(parts.length)];
-    }
-
     public String setSegment() {
         if (this.brand.equals("Fiat") || this.brand.equals("Skoda") || this.brand.equals("Opel") || this.brand.equals("Ford") || this.brand.equals("Volkswagen")) {
             return budget;
@@ -108,14 +99,34 @@ public class Car {
             return randomPremium;
         if (this.segment == "Standard")
             return randomStandard;
-        if (this.segment == "Budget")
-            return randomBudget;
         else
-            return 0.0;
+            return randomBudget;
+
     }
 
     Double randomBudget = ThreadLocalRandom.current().nextDouble(5000.0, 50000.0 + 1);
     Double randomStandard = ThreadLocalRandom.current().nextDouble(51000.0, 120000.0 + 1);
     Double randomPremium = ThreadLocalRandom.current().nextDouble(121000.0, 1000000.0 + 1);
+
+    public enum Status {
+        Broken,
+        Good,
+    }
+
+    private Status status;
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public void brokePart(Car brokenpart) {
+        brokenpart.setStatus(Status.Broken);
+    }
+
+
+        Random randompart = new Random();
+        String[] parts = {"brakes", "suspension", "engine", "body", "shifting gear"};
+        String brokenpart = parts[randompart.nextInt(parts.length)];
+
 
 }

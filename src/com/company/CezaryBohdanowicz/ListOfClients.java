@@ -7,9 +7,9 @@ import java.util.Set;
 
 public class ListOfClients {
 
-    public Set<Human> listOfClients;
+    public Set<Client> listOfClients;
 
-    public ListOfClients(Set<Human> listOfClients) {
+    public ListOfClients(Set<Client> listOfClients) {
         this.listOfClients = listOfClients;
     }
 

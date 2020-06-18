@@ -148,13 +148,13 @@ public class Main {
                                 break;
 
                             default:
-                                System.out.println("Invalid number");
+                                System.out.println("Error, wrong number");
                         }
                     } while (select != 2);
                     break;
 
                 default:
-                    System.out.println("Invalid number");
+                    System.out.println("Error, wrong number");
             }
         } while (mainSelect != 0);
 
