@@ -1,7 +1,6 @@
 package com.company.CezaryBohdanowicz;
 
 import com.company.CezaryBohdanowicz.Human.Human;
-import org.w3c.dom.ls.LSOutput;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -20,7 +19,7 @@ public class Car {
     public Double priceWithTax;
     public ArrayList<Human> owners = new ArrayList<>();
     Double randomMileage = ThreadLocalRandom.current().nextDouble(1.0, 400000.0 + 1);
-   // public String brokenpart;
+   public Parts brokenpart;
 
     public String getBrand() {
         return brand;
@@ -46,11 +45,11 @@ public class Car {
         return price;
     }
 
-    public String getBrokenpart() {
+    public Parts getBrokenpart() {
         return brokenpart;
     }
 
-    public void setBrokenpart(String brokenpart) {
+    public void setBrokenpart() {
         this.brokenpart = brokenpart;
     }
 
@@ -61,7 +60,7 @@ public class Car {
         this.segment = setSegment();
         this.color = colorGenerator();
         this.price = setValue();
-        this.brokenpart = brokePart();
+        this.brokenpart = new Parts();
 
     }
 
@@ -107,26 +106,4 @@ public class Car {
     Double randomBudget = ThreadLocalRandom.current().nextDouble(5000.0, 50000.0 + 1);
     Double randomStandard = ThreadLocalRandom.current().nextDouble(51000.0, 120000.0 + 1);
     Double randomPremium = ThreadLocalRandom.current().nextDouble(121000.0, 1000000.0 + 1);
-
-    public enum Status {
-        Broken,
-        Good,
-    }
-
-    private Status status;
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public void brokePart(Car brokenpart) {
-        brokenpart.setStatus(Status.Broken);
-    }
-
-
-        Random randompart = new Random();
-        String[] parts = {"brakes", "suspension", "engine", "body", "shifting gear"};
-        String brokenpart = parts[randompart.nextInt(parts.length)];
-
-
 }
