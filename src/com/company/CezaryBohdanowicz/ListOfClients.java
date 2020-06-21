@@ -5,11 +5,12 @@ import com.company.CezaryBohdanowicz.Human.Human;
 
 import java.util.Set;
 
-public class ListOfClients {
+public class ListOfClients extends Human {
 
     public Set<Client> listOfClients;
+    public Set<Car> listOfClientsCar;
 
-    public ListOfClients(Set<Client> listOfClients) {
+    public ListOfClients() {
         this.listOfClients = listOfClients;
     }
 
@@ -21,4 +22,7 @@ public class ListOfClients {
         this.listOfClients.remove(client);
     }
 
+    public void addCar(Car car){
+        this.listOfClientsCar.add(new Car());
+    }
 }

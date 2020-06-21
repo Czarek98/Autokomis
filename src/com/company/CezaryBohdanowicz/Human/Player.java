@@ -4,6 +4,7 @@ import com.company.CezaryBohdanowicz.Car;
 import com.company.CezaryBohdanowicz.ListOfClients;
 import com.company.CezaryBohdanowicz.Saleable;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Player extends Human implements Saleable {
@@ -14,10 +15,21 @@ public class Player extends Human implements Saleable {
     public Car car;
     public Double gameCash;
 
+    public Car getCar(Integer indexOfCar) {
+        return car;
+    }
+
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+
     public Player(String firstname, String lastname, Double gameCash) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.gameCash = gameCash;
+        this.myCars = new HashSet<Car>();
     }
 
     public Double getGameCash() {
@@ -28,8 +40,48 @@ public class Player extends Human implements Saleable {
         this.gameCash = gameCash;
     }
 
-    @Override
-    public void Sell(Player player, ListOfClients client, Double price) throws Exception {
-
+    public Double getPrice(Integer indexOfCar) {
+        Car[] tempList = new Car[myCars.size()];
+        myCars.toArray(tempList);
+        return tempList[indexOfCar].getPrice();
     }
+
+    public void addCar(Car car) {
+        this.myCars.add(car);
+        this.car = car;
+    }
+
+    public void removeCar(Car car) {
+        this.myCars.remove(car);
+    }
+
+    public boolean hasCar(Car newCar) {
+        return this.myCars.contains(newCar);
+    }
+
+    @Override
+    public void Sell(Player player, Integer indexOfCar, ListOfClients client) throws Exception {
+        if (!player.hasCar(this.getCar(indexOfCar)) &&
+                client.getCash() < this.getCar(indexOfCar).price) {
+
+            throw new Exception("Why " + client.firstname + " and " + player.firstname + " even meet ?");
+        }
+
+        if (!player.hasCar(this.getCar(indexOfCar))) {
+            throw new Exception("There is no any car");
+        }
+        if (client.getCash() < this.getCar(indexOfCar).price) {
+            throw new Exception("Not enough money !");
+        }
+
+
+        player.removeCar(this.getCar(indexOfCar));
+        client.addCar(this.getCar(indexOfCar));
+        player.setCash(player.getCash() + this.getCar(indexOfCar).price);
+        client.setCash(client.getCash() - this.getCar(indexOfCar).price);
+        System.out.println(player.firstname + " sold " + this.getCar(indexOfCar).brand + " to: " + client.firstname);
+    }
+
+
 }
+
