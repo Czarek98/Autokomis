@@ -1,19 +1,19 @@
 package com.company.CezaryBohdanowicz.Human;
 
-import com.company.CezaryBohdanowicz.Car;
-import com.company.CezaryBohdanowicz.ListOfClients;
-import com.company.CezaryBohdanowicz.Saleable;
+import com.company.CezaryBohdanowicz.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class Player extends Human implements Saleable {
+public class Player extends Human implements Saleable, Boughtable {
 
     public String firstname;
     public String lastname;
     public Set<Car> myCars;
     public Car car;
     public Double gameCash;
+    public Double tax = 0.2;
+
 
     public Car getCar(Integer indexOfCar) {
         return car;
@@ -83,5 +83,16 @@ public class Player extends Human implements Saleable {
     }
 
 
+    @Override
+    public void Buy(Player player, Integer indexOfCar, ListOfCars listOfCars) throws Exception {
+        if (player.gameCash < this.getCar(indexOfCar).price) {
+            throw new Exception("Not enough money !");
+        }
+
+        listOfCars.removeCar(this.getCar(indexOfCar));
+        myCars.add(this.getCar(indexOfCar));
+        player.gameCash = player.gameCash - this.getCar(indexOfCar).price;
+        player.gameCash = player.gameCash - (this.getCar(indexOfCar).price * tax);
+    }
 }
 

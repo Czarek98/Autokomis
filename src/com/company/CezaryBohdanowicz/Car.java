@@ -16,7 +16,6 @@ public class Car {
     public String standard = "Standard";
     public String budget = "Budget";
     public Double price;
-    public Double priceWithTax;
     public Integer indexOfCar;
     public ArrayList<Human> owners = new ArrayList<>();
     Double randomMileage = ThreadLocalRandom.current().nextDouble(1.0, 400000.0 + 1);
