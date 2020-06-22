@@ -1,6 +1,7 @@
 package com.company.CezaryBohdanowicz;
 
 import com.company.CezaryBohdanowicz.Human.Human;
+import org.w3c.dom.ls.LSOutput;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class Car {
     public String standard = "Standard";
     public String budget = "Budget";
     public Double price;
-    public Parts brokenpart;
+    public Parts part;
     public Integer indexOfCar;
     public ArrayList<Human> owners = new ArrayList<>();
     Double randomMileage = ThreadLocalRandom.current().nextDouble(1.0, 400000.0 + 1);
@@ -51,26 +52,6 @@ public class Car {
         return price;
     }
 
-    public Parts getBrokenpart() {
-        return brokenpart;
-    }
-
-    public void setBrokenpart() {
-        this.brokenpart = brokenpart;
-    }
-
-    @Override
-    public String toString() {
-        return "Car{" +
-                "brand='" + brand + '\'' +
-                ", mileage=" + mileage +
-                ", color='" + color + '\'' +
-                ", segment='" + segment + '\'' +
-                ", price=" + price +
-                ", brokenpart=" + brokenpart +
-                '}';
-    }
-
     public Car() {
 
         this.brand = carGenerator();
@@ -78,8 +59,33 @@ public class Car {
         this.segment = setSegment();
         this.color = colorGenerator();
         this.price = setValue();
-        this.brokenpart = new Parts();
+        this.part = new Parts();
 
+    }
+
+    public Parts getpart() {
+        return part;
+    }
+
+    public void setpart() {
+        this.part = part;
+    }
+
+    public String roundTheNumber(Double notRound) {
+        DecimalFormat df = new DecimalFormat(".00");
+        return df.format(notRound);
+    }
+
+    @Override
+    public String toString() {
+        return "\nCar{" +
+                "brand: " + brand + '\'' +
+                ", mileage: " + roundTheNumber(mileage) + "km" + '\'' +
+                ", color: " + color + '\'' +
+                ", segment: '" + segment + '\'' +
+                ", price: " + roundTheNumber(price) + "zł" + '\'' +
+                ", " + part +
+                '}';
     }
 
 

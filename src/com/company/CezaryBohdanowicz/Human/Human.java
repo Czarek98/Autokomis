@@ -13,7 +13,7 @@ public class Human {
 
     @Override
     public String toString() {
-        return "Human{" +
+        return "\nHuman{" +
                 "firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", cars=" + cars +

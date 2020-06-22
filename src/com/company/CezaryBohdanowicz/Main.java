@@ -1,5 +1,7 @@
 package com.company.CezaryBohdanowicz;
 
+import com.company.CezaryBohdanowicz.Human.Client;
+import com.company.CezaryBohdanowicz.Human.Human;
 import com.company.CezaryBohdanowicz.Human.Player;
 
 import java.awt.*;
@@ -16,8 +18,11 @@ public class Main {
         ListOfCars listOfCars = new ListOfCars();
         ListOfClients listOfClients = new ListOfClients();
         Player player = new Player("Cezary", "Bohdanowicz", 100000.0);
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 5; i++) {
             listOfCars.listOfCars.add(new Car());
+        }
+        for (int i = 0; i < 5; i++) {
+            listOfClients.addClient();
         }
 
         do {
@@ -47,7 +52,7 @@ public class Main {
                             case 1:
                                 System.out.println(listOfCars.listOfCars);
                                 System.out.println("Select car, input");
-                                System.out.println(player.firstname + " money: " + player.getGameCash());
+                                System.out.println(player.firstname + " money: " + player.gameCash);
                                 System.out.println("When select here start function to buy a car and number of turns go up");
                                 numberOfTurns++;
                                 break;
@@ -101,7 +106,7 @@ public class Main {
                         select = input.nextInt();
                         switch (select) {
                             case 1:
-                                System.out.println("You have: " + player.getCash());
+                                System.out.println("You have: " + player.gameCash);
                                 break;
                             case 2:
                                 System.out.println("Player.getFirstname transaction history: ");
@@ -110,7 +115,7 @@ public class Main {
                             case 3:
                                 do {
                                     System.out.println("Select the type of ad");
-                                    System.out.println("Your money: " + player.getCash());
+                                    System.out.println("Your money: " + player.gameCash);
                                     System.out.println("1) Newspaper ad");
                                     System.out.println("2) Internet ad");
                                     System.out.println("3) Back");

@@ -10,7 +10,7 @@ public class ListOfCars {
 
     @Override
     public String toString() {
-        return "ListOfCars{" +
+        return "\nListOfCars{" +
                 "listOfCars=" + listOfCars +
                 '}';
     }

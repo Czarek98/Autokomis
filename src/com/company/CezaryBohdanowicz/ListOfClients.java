@@ -3,25 +3,23 @@ package com.company.CezaryBohdanowicz;
 import com.company.CezaryBohdanowicz.Human.Client;
 import com.company.CezaryBohdanowicz.Human.Human;
 
+import java.util.HashSet;
 import java.util.Set;
 
-public class ListOfClients extends Human {
+public class ListOfClients extends Client {
 
-    @Override
-    public String toString() {
-        return "ListOfClients{" +
-                "listOfClients=" + listOfClients +
-                ", listOfClientsCar=" + listOfClientsCar +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                '}';
+    public ListOfClients() {
+        this.listOfClients = new HashSet<Client>();
     }
 
     public Set<Client> listOfClients;
     public Set<Car> listOfClientsCar;
 
-    public ListOfClients() {
-        this.listOfClients = listOfClients;
+    @Override
+    public String toString() {
+        return "\nListOfClients{" +
+                "listOfClients=" + listOfClients +
+                '}';
     }
 
     public void addClient() {

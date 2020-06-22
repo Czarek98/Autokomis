@@ -31,9 +31,7 @@ public class Player extends Human implements Saleable, Boughtable {
                 "firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", myCars=" + myCars +
-                ", car=" + car +
                 ", gameCash=" + gameCash +
-                ", tax=" + tax +
                 '}';
     }
 
@@ -89,8 +87,8 @@ public class Player extends Human implements Saleable, Boughtable {
 
         player.removeCar(this.getCar(indexOfCar));
         client.addCar(this.getCar(indexOfCar));
-        player.setCash(player.getCash() + this.getCar(indexOfCar).price);
-        client.setCash(client.getCash() - this.getCar(indexOfCar).price);
+        player.setCash(player.gameCash + this.getCar(indexOfCar).price);
+        client.setCash(client.clientCash - this.getCar(indexOfCar).price);
         System.out.println(player.firstname + " sold " + this.getCar(indexOfCar).brand + " to: " + client.firstname);
     }
 
