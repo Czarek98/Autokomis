@@ -2,9 +2,12 @@ package com.company.CezaryBohdanowicz;
 
 import com.company.CezaryBohdanowicz.Human.Human;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+import java.lang.Math;
+
 
 public class Car {
 
@@ -16,10 +19,13 @@ public class Car {
     public String standard = "Standard";
     public String budget = "Budget";
     public Double price;
+    public Parts brokenpart;
     public Integer indexOfCar;
     public ArrayList<Human> owners = new ArrayList<>();
     Double randomMileage = ThreadLocalRandom.current().nextDouble(1.0, 400000.0 + 1);
-   public Parts brokenpart;
+    Double randomBudget = ThreadLocalRandom.current().nextDouble(5000.0, 50000.0 + 1);
+    Double randomStandard = ThreadLocalRandom.current().nextDouble(51000.0, 120000.0 + 1);
+    Double randomPremium = ThreadLocalRandom.current().nextDouble(121000.0, 1000000.0 + 1);
 
     public String getBrand() {
         return brand;
@@ -51,6 +57,18 @@ public class Car {
 
     public void setBrokenpart() {
         this.brokenpart = brokenpart;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "brand='" + brand + '\'' +
+                ", mileage=" + mileage +
+                ", color='" + color + '\'' +
+                ", segment='" + segment + '\'' +
+                ", price=" + price +
+                ", brokenpart=" + brokenpart +
+                '}';
     }
 
     public Car() {
@@ -102,8 +120,4 @@ public class Car {
             return randomBudget;
 
     }
-
-    Double randomBudget = ThreadLocalRandom.current().nextDouble(5000.0, 50000.0 + 1);
-    Double randomStandard = ThreadLocalRandom.current().nextDouble(51000.0, 120000.0 + 1);
-    Double randomPremium = ThreadLocalRandom.current().nextDouble(121000.0, 1000000.0 + 1);
 }

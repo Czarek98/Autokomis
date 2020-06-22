@@ -117,6 +117,17 @@ public class Parts {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Parts{" +
+                "brakes=" + brakes +
+                ", suspension=" + suspension +
+                ", engine=" + engine +
+                ", body=" + body +
+                ", gearbox=" + gearbox +
+                '}';
+    }
+
     public Parts() {
         this.brakes = isBroken(new Random().nextBoolean());
         this.suspension = isBroken(new Random().nextBoolean());

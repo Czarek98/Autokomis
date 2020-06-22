@@ -13,10 +13,16 @@ public class Main {
         int select;
         int numberOfTurns = 0;
         Scanner input = new Scanner(System.in);
+        ListOfCars listOfCars = new ListOfCars();
+        ListOfClients listOfClients = new ListOfClients();
+        Player player = new Player("Cezary", "Bohdanowicz", 100000.0);
+        for (int i = 0; i < 15; i++) {
+            listOfCars.listOfCars.add(new Car());
+        }
 
         do {
             System.out.println("1) Show list of cars to buy ");
-            System.out.println("2) Show " + "Player.getFirstname" + " list of cars ");
+            System.out.println("2) Show " + player.firstname + " list of cars ");
             System.out.println("3) Players account");
             System.out.println("4) Clients");
             System.out.println();
@@ -39,10 +45,11 @@ public class Main {
                         select = input.nextInt();
                         switch (select) {
                             case 1:
-                                System.out.println("List of cars");
+                                System.out.println(listOfCars.listOfCars);
                                 System.out.println("Select car, input");
-                                System.out.println("Display money");
+                                System.out.println(player.firstname + " money: " + player.getGameCash());
                                 System.out.println("When select here start function to buy a car and number of turns go up");
+                                numberOfTurns++;
                                 break;
                             case 2:
                                 System.out.println("Previous menu: ");
@@ -94,7 +101,7 @@ public class Main {
                         select = input.nextInt();
                         switch (select) {
                             case 1:
-                                System.out.println("You have: " + "player.getCash())");
+                                System.out.println("You have: " + player.getCash());
                                 break;
                             case 2:
                                 System.out.println("Player.getFirstname transaction history: ");
@@ -103,7 +110,7 @@ public class Main {
                             case 3:
                                 do {
                                     System.out.println("Select the type of ad");
-                                    System.out.println("Your money: " + " player.getCash())");
+                                    System.out.println("Your money: " + player.getCash());
                                     System.out.println("1) Newspaper ad");
                                     System.out.println("2) Internet ad");
                                     System.out.println("3) Back");
@@ -111,11 +118,11 @@ public class Main {
                                     switch (select) {
                                         case 1:
                                             System.out.println("Function that add 2 potential clients, more cost");
-                                            System.out.println("Increase number of turns");
+                                            numberOfTurns++;
                                             break;
                                         case 2:
                                             System.out.println("Function that add 1 potential clients, less cost");
-                                            System.out.println("Increase number of turns");
+                                            numberOfTurns++;
                                             break;
                                         case 3:
                                             System.out.println("Back to previous menu: ");
@@ -141,7 +148,7 @@ public class Main {
                         switch (select) {
                             case 1:
                                 System.out.println("Your potential customers: ");
-                                System.out.println("clients list");
+                                System.out.println(listOfClients.listOfClients);
                                 break;
                             case 2:
                                 System.out.println("Previous menu: ");

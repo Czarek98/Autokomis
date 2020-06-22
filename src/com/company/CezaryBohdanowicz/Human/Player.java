@@ -25,6 +25,18 @@ public class Player extends Human implements Saleable, Boughtable {
     }
 
 
+    @Override
+    public String toString() {
+        return "Player{" +
+                "firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", myCars=" + myCars +
+                ", car=" + car +
+                ", gameCash=" + gameCash +
+                ", tax=" + tax +
+                '}';
+    }
+
     public Player(String firstname, String lastname, Double gameCash) {
         this.firstname = firstname;
         this.lastname = lastname;

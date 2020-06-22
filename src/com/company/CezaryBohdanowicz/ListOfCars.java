@@ -8,12 +8,19 @@ import java.util.Set;
 public class ListOfCars {
     public Set<Car> listOfCars;
 
+    @Override
+    public String toString() {
+        return "ListOfCars{" +
+                "listOfCars=" + listOfCars +
+                '}';
+    }
+
     public ListOfCars() {
 
         this.listOfCars = new HashSet<Car>();
     }
 
-    public void addCar(){
+    public void addCar() {
         this.listOfCars.add(new Car());
     }
 

@@ -6,9 +6,20 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Human {
+    private Double cash;
+
     public String firstname;
     public String lastname;
-    private  Double cash;
+
+    @Override
+    public String toString() {
+        return "Human{" +
+                "firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", cars=" + cars +
+                '}';
+    }
+
     public Set<Car> cars;
 
 
