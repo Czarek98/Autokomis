@@ -26,11 +26,17 @@ public class ListOfClients extends Client {
         this.listOfClients.add(new Client());
     }
 
-    public void removeClient(Client client){
+    public void removeClient(Client client) {
         this.listOfClients.remove(client);
     }
 
-    public void addCar(Car car){
+    public void addCar(Car car) {
         this.listOfClientsCar.add(new Car());
+    }
+
+    public Client getClient(Integer indexOfClient) {
+        Client[] myArray = new Client[listOfClients.size() + 10];
+        listOfClients.toArray(myArray);
+        return myArray[indexOfClient];
     }
 }

@@ -5,5 +5,5 @@ import com.company.CezaryBohdanowicz.Human.Human;
 import com.company.CezaryBohdanowicz.Human.Player;
 
 public interface Saleable {
-    void Sell(Player player,Integer indexOfCar, ListOfClients client) throws Exception;
+    void Sell(Integer indexOfCar, Integer indexOfClient, ListOfClients listOfClients, ListOfCars listOfCars) throws Exception;
 }

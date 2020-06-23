@@ -22,6 +22,7 @@ public class Car {
     public Double price;
     public Parts part;
     public Integer indexOfCar;
+    public Boolean wash;
     public ArrayList<Human> owners = new ArrayList<>();
     Double randomMileage = ThreadLocalRandom.current().nextDouble(1.0, 400000.0 + 1);
     Double randomBudget = ThreadLocalRandom.current().nextDouble(5000.0, 50000.0 + 1);
@@ -38,14 +39,6 @@ public class Car {
 
     public Double getMileage() {
         return mileage;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
     }
 
     public Double getPrice() {
@@ -79,11 +72,11 @@ public class Car {
     @Override
     public String toString() {
         return "\nCar{" +
-                "brand: " + brand + '\'' +
-                ", mileage: " + roundTheNumber(mileage) + "km" + '\'' +
-                ", color: " + color + '\'' +
-                ", segment: '" + segment + '\'' +
-                ", price: " + roundTheNumber(price) + "zł" + '\'' +
+                "brand: " + this.brand + '\'' +
+                ", mileage: " + this.roundTheNumber(mileage) + "km" + '\'' +
+                ", color: " + this.color + '\'' +
+                ", segment: '" + this.segment + '\'' +
+                ", price: " + this.roundTheNumber(price) + "zł" + '\'' +
                 ", " + part +
                 '}';
     }

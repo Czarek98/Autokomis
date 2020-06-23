@@ -10,48 +10,6 @@ public class Parts {
     public boolean body;
     public boolean gearbox;
 
-//    public boolean getBrakes() {
-//        return this.brakes;
-//    }
-//
-//    public boolean getSuspension() {
-//        return this.suspension;
-//    }
-//
-//    public boolean getEngine() {
-//        return this.engine;
-//    }
-//
-//    public boolean getBody() {
-//        return this.body;
-//    }
-//
-//    public boolean getGearbox() {
-//        return this.gearbox;
-//    }
-//
-//
-//    public void setBrakes() {
-//        this.brakes = isBroken(true);
-//    }
-//
-//    public void setSuspension() {
-//        this.suspension = isBroken(true);
-//    }
-//
-//    public void setEngine() {
-//        this.engine = isBroken(true);
-//    }
-//
-//    public void setbody() {
-//        this.body = isBroken(true);
-//    }
-//
-//    public void setGearbox() {
-//        this.gearbox = isBroken(true);
-//    }
-
-
     public void setBrakesBroke() {
         this.brakes = isBroken(false);
         System.out.println("Brakes are broken");
@@ -77,45 +35,6 @@ public class Parts {
         System.out.println("Gearbox is broken");
     }
 
-    public String checkBrakes() {
-        if (this.brakes = isBroken(false)) {
-            return "Broken";
-        } else {
-            return "Good";
-        }
-    }
-
-    public String checkSuspension() {
-        if (this.suspension = isBroken(false)) {
-            return "Broken";
-        } else {
-            return "Good";
-        }
-    }
-
-    public String checkEngine() {
-        if (this.engine = isBroken(false)) {
-            return "Broken";
-        } else {
-            return "Good";
-        }
-    }
-
-    public String checkBody() {
-        if (this.body = isBroken(false)) {
-            return "Broken";
-        } else {
-            return "Good";
-        }
-    }
-
-    public String checkGearbox() {
-        if (this.gearbox = isBroken(false)) {
-            return "Broken";
-        } else {
-            return "Good";
-        }
-    }
 
     public String checkPart(boolean part) {
         if (part = isBroken(part)) {
