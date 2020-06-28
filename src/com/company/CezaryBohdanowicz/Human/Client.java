@@ -17,7 +17,7 @@ public class Client extends Human {
 
     @Override
     public String toString() {
-        return "Client{" +
+        return "\nClient{" +
                 "firstname='" + firstname + '\'' +
                 ", clientCash=" + roundTheNumber(clientCash) +
                 '}';

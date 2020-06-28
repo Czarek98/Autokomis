@@ -1,18 +1,18 @@
 package com.company.CezaryBohdanowicz.Human;
 
 import com.company.CezaryBohdanowicz.*;
+import com.company.CezaryBohdanowicz.Mechanic;
 
 import java.text.DecimalFormat;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Player extends Human implements Saleable, Boughtable {
+public class Player extends Human implements Saleable, Boughtable, Mechanic {
 
     public String firstname;
     public String lastname;
-    public Set<Car> myCars;
-    public Set<Client> myClients;
+    public MyCars myCars;
     public Car car;
     public Client client;
     public Double gameCash;
@@ -23,25 +23,11 @@ public class Player extends Human implements Saleable, Boughtable {
         this.firstname = firstname;
         this.lastname = lastname;
         this.gameCash = gameCash;
-        this.myCars = new HashSet<Car>();
-        this.myClients = new HashSet<Client>();
+        this.myCars = new MyCars();
     }
-
-    public Car getCar(Integer indexOfCar) {
-        Car[] myArray = new Car[myCars.size()];
-        myCars.toArray(myArray);
-        return myArray[indexOfCar];
-    }
-
 
     public void setCar(Car car) {
         this.car = car;
-    }
-
-    public Client getClient(Integer indexOfClient) {
-        Client[] myArray = new Client[myClients.size() + 10];
-        myClients.toArray(myArray);
-        return myArray[indexOfClient];
     }
 
     @Override
@@ -50,7 +36,6 @@ public class Player extends Human implements Saleable, Boughtable {
                 "firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", myCars=" + myCars +
-                ", myClients=" + myClients +
                 ", gameCash=" + gameCash +
                 '}';
     }
@@ -63,66 +48,41 @@ public class Player extends Human implements Saleable, Boughtable {
         this.gameCash = gameCash;
     }
 
-    public Double getPrice(Integer indexOfCar) {
-        Car[] tempList = new Car[myCars.size()];
-        myCars.toArray(tempList);
-        return tempList[indexOfCar].getPrice();
-    }
-
-    public void addCar(Car car) {
-        this.myCars.add(car);
-        this.car = car;
-    }
-
-    public void addClient(Client client) {
-        this.myClients.add(client);
-        this.client = client;
-    }
-
-    public void removeCar(Car car) {
-        this.myCars.remove(car);
-    }
-
-    public void removeClient(Client client) {
-        this.myClients.remove(client);
-    }
-
     public String roundTheNumber(Double notRound) {
         DecimalFormat df = new DecimalFormat(".00");
         return df.format(notRound);
     }
 
-    public boolean hasCar(Car newCar) {
-        return this.myCars.contains(newCar);
-    }
-
     @Override
-    public void Sell(Integer indexOfCar, Integer indexOfClient, ListOfClients listOfClients, ListOfCars listOfCars) throws Exception {
-        if (!this.hasCar(this.getCar(indexOfCar))) {
+    public void Sell(Integer indexOfCar, Integer indexOfClient, ListOfClients listOfClients, ListOfCars listOfCars, MyCars myCars) throws Exception {
+        if (!myCars.hasCar(myCars.getCar(indexOfCar))) {
             throw new Exception("There is no any car");
         }
-        if (listOfClients.getClient(indexOfClient).getCash() < this.getCar(indexOfCar).price) {
+        if (listOfClients.getClient(indexOfClient).getCash() < myCars.getCar(indexOfCar).price) {
             throw new Exception("Not enough money !");
         }
-        this.removeCar(this.getCar(indexOfCar));
-        this.setCash(this.gameCash + this.getCar(indexOfCar).price);
-        System.out.println(this.firstname + " sold " + this.getCar(indexOfCar).brand + " to: " + this.getClient(indexOfClient).firstname);
+        this.setCash(this.gameCash + myCars.getCar(indexOfCar).price);
+        System.out.println(this.firstname + " sold " + myCars.getCar(indexOfCar).brand + " to: " + listOfClients.getClient(indexOfClient).firstname);
+        myCars.removeCar(myCars.getCar(indexOfCar));
     }
 
-
     @Override
-    public void Buy(Integer indexOfCar, ListOfCars cars) throws Exception {
+    public void Buy(Integer indexOfCar, ListOfCars cars, MyCars myCars) throws Exception {
         if (this.getGameCash() < cars.getPrice(indexOfCar)) {
             throw new Exception("Not enough money !");
         }
 
-        this.myCars.add(cars.getCar(indexOfCar));
         this.setGameCash(this.getGameCash() - cars.getCar(indexOfCar).price);
         this.gameCash = this.gameCash - (cars.getCar(indexOfCar).price * tax);
-        cars.listOfCars.remove(cars.getCar(indexOfCar));
-        cars.listOfCars.add(new Car());
         System.out.println("You bought " + cars.getCar(indexOfCar).brand + " for " + cars.getCar(indexOfCar).price);
         System.out.println("Now you have: " + this.gameCash);
+        cars.listOfCars.remove(indexOfCar);
+        cars.listOfCars.put(indexOfCar, new Car());
+    }
+
+    @Override
+    public void Repair(Integer indexOfPart, Integer indexOfCar) {
+
     }
 }
 

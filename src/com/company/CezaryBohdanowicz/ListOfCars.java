@@ -7,42 +7,43 @@ import java.util.Map;
 import java.util.Set;
 
 public class ListOfCars {
-    public Set<Car> listOfCars;
-
-    @Override
-    public String toString() {
-        return "\nListOfCars{" +
-                "listOfCars=";
-    }
+    public Map<Integer, Car> listOfCars;
+    Integer indexOfCar;
 
     public ListOfCars() {
 
-        this.listOfCars = new HashSet<Car>();
+        this.listOfCars = new HashMap<>();
+    }
+
+    @Override
+    public String toString() {
+        return "\nListOfCars=";
     }
 
     public void addCar() {
-        this.listOfCars.add(new Car());
+        listOfCars.put(indexOfCar, new Car());
     }
 
-    public void removeCar(Car car) {
-        listOfCars.remove(car);
+    public void removeCar(Car indexOfCar) {
+        listOfCars.remove(indexOfCar);
     }
 
     public Double getPrice(Integer indexOfCar) {
-        Car[] tempList = new Car[listOfCars.size()];
-        listOfCars.toArray(tempList);
-        return tempList[indexOfCar].getPrice();
+        return listOfCars.get(indexOfCar).price;
     }
 
     public Car getCar(Integer indexOfCar) {
-        Car[] tempList = new Car[listOfCars.size()];
-        listOfCars.toArray(tempList);
-        return tempList[indexOfCar];
+        return listOfCars.get(indexOfCar);
     }
 
     public String roundTheNumber(Double notRound) {
         DecimalFormat df = new DecimalFormat(".00");
         return df.format(notRound);
+    }
+
+    public Parts getPart(Integer indexOfPart) {
+        Parts[] part = new Parts[6];
+        return part[indexOfPart];
     }
 
 

@@ -35,7 +35,7 @@ public class ListOfClients extends Client {
     }
 
     public Client getClient(Integer indexOfClient) {
-        Client[] myArray = new Client[listOfClients.size() + 10];
+        Client[] myArray = new Client[listOfClients.size()];
         listOfClients.toArray(myArray);
         return myArray[indexOfClient];
     }

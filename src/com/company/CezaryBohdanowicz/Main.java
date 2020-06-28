@@ -15,17 +15,18 @@ public class Main {
         int select;
         int clientIndex;
         int carIndex;
-        int buySelect = -1;
+        int buySelect;
         int numberOfTurns = 0;
         Scanner input = new Scanner(System.in);
         ListOfCars listOfCars = new ListOfCars();
         ListOfClients listOfClients = new ListOfClients();
+        MyCars myCars = new MyCars();
         Player player = new Player("Cezary", "Bohdanowicz", 100000000.0);
-        for (int i = 0; i < 5; i++) {
-            listOfCars.listOfCars.add(new Car());
+        for (int i = 1; i < 6; i++) {
+            listOfCars.listOfCars.put(i, new Car());
         }
         for (int i = 0; i < 5; i++) {
-            player.myClients.add(new Client());
+            listOfClients.listOfClients.add(new Client());
         }
 
         do {
@@ -56,10 +57,10 @@ public class Main {
                                 System.out.println(listOfCars.listOfCars);
                                 System.out.println(player.firstname + " money: " + player.gameCash);
                                 System.out.print("Select car: ");
-                                buySelect = input.nextInt() - 1;
+                                buySelect = input.nextInt();
 
                                 try {
-                                    player.Buy(buySelect, listOfCars);
+                                    player.Buy(buySelect, listOfCars, myCars);
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
@@ -85,11 +86,12 @@ public class Main {
                             case 1:
                                 System.out.print("Select car to sell: ");
                                 carIndex = input.nextInt();
+                                System.out.println(listOfClients.listOfClients);
                                 System.out.print("Select client: ");
                                 clientIndex = input.nextInt();
                                 System.out.println("sell function start here");
                                 try {
-                                    player.Sell(carIndex, clientIndex, listOfClients, listOfCars);
+                                    player.Sell(carIndex, clientIndex, listOfClients, listOfCars, myCars);
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
@@ -97,7 +99,7 @@ public class Main {
                                 break;
                             case 2:
                                 System.out.println("input, to select a car to wash");
-                                select = input.nextInt();
+                                carIndex = input.nextInt();
                                 System.out.println("wash function start here");
                                 break;
                             case 3:
@@ -141,14 +143,14 @@ public class Main {
                                         case 1:
                                             player.gameCash = player.gameCash - 1000.0;
                                             System.out.println("You choose newspaper ad. You gain 2 clients. Your money: " + player.gameCash);
-                                            player.myClients.add(new Client());
-                                            player.myClients.add(new Client());
+                                            listOfClients.listOfClients.add(new Client());
+                                            listOfClients.listOfClients.add(new Client());
                                             numberOfTurns++;
                                             break;
                                         case 2:
                                             player.gameCash = player.gameCash - 700.0;
                                             System.out.println("You choose internet ad. You gain 1 clients. Your money: " + player.gameCash);
-                                            player.myClients.add(new Client());
+                                            listOfClients.listOfClients.add(new Client());
                                             numberOfTurns++;
                                             break;
                                         case 3:

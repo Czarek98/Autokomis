@@ -35,6 +35,11 @@ public class Parts {
         System.out.println("Gearbox is broken");
     }
 
+    public Parts setPartRepair(boolean part) {
+        part = true;
+        System.out.println("is in good condition");
+        return null;
+    }
 
     public String checkPart(boolean part) {
         if (part = isBroken(part)) {
