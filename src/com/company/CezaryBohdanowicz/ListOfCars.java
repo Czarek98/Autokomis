@@ -20,11 +20,11 @@ public class ListOfCars {
         return "\nListOfCars=";
     }
 
-    public void addCar() {
+    public void addCar(Integer indexOfCar) {
         listOfCars.put(indexOfCar, new Car());
     }
 
-    public void removeCar(Car indexOfCar) {
+    public void removeCar(Integer indexOfCar) {
         listOfCars.remove(indexOfCar);
     }
 

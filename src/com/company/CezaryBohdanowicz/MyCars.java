@@ -1,16 +1,22 @@
 package com.company.CezaryBohdanowicz;
 
+import com.company.CezaryBohdanowicz.Human.Player;
+
 import java.text.DecimalFormat;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class MyCars {
 
-    public Set<Car> myCars;
+    public Map<Integer, Car> myCars;
+    Integer indexOfCar;
+    Player player;
 
     public MyCars() {
 
-        this.myCars = new HashSet<Car>();
+        this.myCars = new HashMap<>();
     }
 
     @Override
@@ -19,28 +25,24 @@ public class MyCars {
                 "myCars=";
     }
 
-    public void addCar(Car car) {
-        myCars.add(new Car());
+    public void addCar(Integer indexOfCar, Car car) {
+        myCars.put(indexOfCar, car);
     }
 
-    public void removeCar(Car car) {
-        myCars.remove(car);
+    public void removeCar(Car indexOfCar) {
+        myCars.remove(indexOfCar);
     }
 
-    public boolean hasCar(Car newCar) {
-        return myCars.contains(newCar);
+    public boolean hasCar(Car indexOfCar) {
+        return myCars.containsKey(indexOfCar);
     }
 
     public Double getPrice(Integer indexOfCar) {
-        Car[] tempList = new Car[myCars.size()];
-        myCars.toArray(tempList);
-        return tempList[indexOfCar].getPrice();
+        return myCars.get(indexOfCar).price;
     }
 
     public Car getCar(Integer indexOfCar) {
-        Car[] tempList = new Car[myCars.size()];
-        myCars.toArray(tempList);
-        return tempList[indexOfCar];
+        return myCars.get(indexOfCar);
     }
 
     public String roundTheNumber(Double notRound) {

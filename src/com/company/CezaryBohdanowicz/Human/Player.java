@@ -4,6 +4,7 @@ import com.company.CezaryBohdanowicz.*;
 import com.company.CezaryBohdanowicz.Mechanic;
 
 import java.text.DecimalFormat;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,7 +13,7 @@ public class Player extends Human implements Saleable, Boughtable, Mechanic {
 
     public String firstname;
     public String lastname;
-    public MyCars myCars;
+    public HashMap<Integer, Car> myCars;
     public Car car;
     public Client client;
     public Double gameCash;
@@ -23,7 +24,7 @@ public class Player extends Human implements Saleable, Boughtable, Mechanic {
         this.firstname = firstname;
         this.lastname = lastname;
         this.gameCash = gameCash;
-        this.myCars = new MyCars();
+        this.myCars = new HashMap<Integer, Car>();
     }
 
     public void setCar(Car car) {
@@ -76,8 +77,10 @@ public class Player extends Human implements Saleable, Boughtable, Mechanic {
         this.gameCash = this.gameCash - (cars.getCar(indexOfCar).price * tax);
         System.out.println("You bought " + cars.getCar(indexOfCar).brand + " for " + cars.getCar(indexOfCar).price);
         System.out.println("Now you have: " + this.gameCash);
-        cars.listOfCars.remove(indexOfCar);
-        cars.listOfCars.put(indexOfCar, new Car());
+        myCars.myCars.put(indexOfCar, cars.getCar(indexOfCar));
+        this.myCars.put(this.myCars.size() + 1, cars.getCar(indexOfCar));
+        cars.removeCar(indexOfCar);
+        cars.addCar(indexOfCar);
     }
 
     @Override
