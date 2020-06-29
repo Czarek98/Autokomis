@@ -11,8 +11,6 @@ import java.util.Set;
 public class MyCars {
 
     public Map<Integer, Car> myCars;
-    Integer indexOfCar;
-    Player player;
 
     public MyCars() {
 
@@ -34,7 +32,7 @@ public class MyCars {
     }
 
     public boolean hasCar(Car indexOfCar) {
-        return myCars.containsKey(indexOfCar);
+        return myCars.containsKey(myCars.get(indexOfCar));
     }
 
     public Double getPrice(Integer indexOfCar) {

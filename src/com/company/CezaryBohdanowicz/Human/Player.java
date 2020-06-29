@@ -55,16 +55,16 @@ public class Player extends Human implements Saleable, Boughtable, Mechanic {
     }
 
     @Override
-    public void Sell(Integer indexOfCar, Integer indexOfClient, ListOfClients listOfClients, ListOfCars listOfCars, MyCars myCars) throws Exception {
-        if (!myCars.hasCar(myCars.getCar(indexOfCar))) {
-            throw new Exception("There is no any car");
-        }
-        if (listOfClients.getClient(indexOfClient).getCash() < myCars.getCar(indexOfCar).price) {
-            throw new Exception("Not enough money !");
-        }
-        this.setCash(this.gameCash + myCars.getCar(indexOfCar).price);
-        System.out.println(this.firstname + " sold " + myCars.getCar(indexOfCar).brand + " to: " + listOfClients.getClient(indexOfClient).firstname);
-        myCars.removeCar(myCars.getCar(indexOfCar));
+    public void Sell(Integer indexOfCar, Integer indexOfClient, ListOfClients listOfClients, MyCars myCars) {
+
+        this.setGameCash(this.getGameCash() + this.myCars.get(indexOfCar).price);
+        this.gameCash = this.gameCash + (this.myCars.get(indexOfCar).price * tax);
+        System.out.println(this.firstname + " sold " + this.myCars.get(indexOfCar).brand +
+                " to: " + listOfClients.listOfClients.get(indexOfClient).firstname + " for " +
+                this.myCars.get(indexOfCar).price);
+        this.myCars.remove(indexOfCar);
+        listOfClients.listOfClients.remove(indexOfClient);
+        System.out.println("Now you have: " + this.gameCash);
     }
 
     @Override
@@ -75,7 +75,8 @@ public class Player extends Human implements Saleable, Boughtable, Mechanic {
 
         this.setGameCash(this.getGameCash() - cars.getCar(indexOfCar).price);
         this.gameCash = this.gameCash - (cars.getCar(indexOfCar).price * tax);
-        System.out.println("You bought " + cars.getCar(indexOfCar).brand + " for " + cars.getCar(indexOfCar).price);
+        System.out.println("You bought " + cars.getCar(indexOfCar).brand +
+                " for " + cars.getCar(indexOfCar).price);
         System.out.println("Now you have: " + this.gameCash);
         myCars.myCars.put(indexOfCar, cars.getCar(indexOfCar));
         this.myCars.put(this.myCars.size() + 1, cars.getCar(indexOfCar));

@@ -13,20 +13,20 @@ public class Main {
 
         int mainSelect;
         int select;
-        int clientIndex;
-        int carIndex;
-        int buySelect;
+        Integer clientIndex;
+        Integer carIndex;
+        Integer buySelect;
         int numberOfTurns = 0;
         Scanner input = new Scanner(System.in);
         ListOfCars listOfCars = new ListOfCars();
         ListOfClients listOfClients = new ListOfClients();
         MyCars myCars = new MyCars();
-        Player player = new Player("Cezary", "Bohdanowicz", 100000000.0);
+        Player player = new Player("Cezary", "Bohdanowicz", 1000000.0);
         for (int i = 1; i < 6; i++) {
             listOfCars.listOfCars.put(i, new Car());
         }
         for (int i = 0; i < 5; i++) {
-            listOfClients.listOfClients.add(new Client());
+            listOfClients.listOfClients.put(i, new Client());
         }
 
         do {
@@ -74,48 +74,52 @@ public class Main {
                         }
                     } while (select != 2);
                     break;
+
                 case 2:
-                    do {
-                        System.out.println(player.myCars);
-                        System.out.println("1) Sell car");
-                        System.out.println("2) Wash car");
-                        System.out.println("3) Repair car");
-                        System.out.println("4) Back");
-                        select = input.nextInt();
-                        switch (select) {
-                            case 1:
-                                System.out.print("Select car to sell: ");
-                                carIndex = input.nextInt();
-                                System.out.println(listOfClients.listOfClients);
-                                System.out.print("Select client: ");
-                                clientIndex = input.nextInt();
-                                System.out.println("sell function start here");
-                                try {
-                                    player.Sell(carIndex, clientIndex, listOfClients, listOfCars, myCars);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
+                    if (!player.myCars.isEmpty()) {
+                        do {
+                            System.out.println(player.myCars);
+                            System.out.println("1) Sell car");
+                            System.out.println("2) Wash car");
+                            System.out.println("3) Repair car");
+                            System.out.println("4) Back");
+                            select = input.nextInt();
+                            switch (select) {
+                                case 1:
 
-                                break;
-                            case 2:
-                                System.out.println("input, to select a car to wash");
-                                carIndex = input.nextInt();
-                                System.out.println("wash function start here");
-                                break;
-                            case 3:
-                                System.out.println("input, to select a car to repair");
-                                select = input.nextInt();
-                                System.out.println("repair function start here");
-                                break;
-                            case 4:
-                                System.out.println("Previous menu: ");
-                                break;
-                            default:
-                                System.out.println("Error, wrong number");
+                                    System.out.print("Select car to sell: ");
+                                    carIndex = input.nextInt();
+                                    System.out.println(listOfClients.listOfClients);
+                                    System.out.print("Select client: ");
+                                    clientIndex = input.nextInt();
 
-                        }
-                    } while (select != 4);
-                    break;
+                                    System.out.println("sell function start here");
+                                    player.Sell(carIndex, clientIndex, listOfClients, myCars);
+                                    break;
+                                case 2:
+                                    System.out.println("input, to select a car to wash");
+                                    carIndex = input.nextInt();
+                                    System.out.println("wash function start here");
+                                    break;
+                                case 3:
+                                    System.out.println("input, to select a car to repair");
+                                    carIndex = input.nextInt();
+                                    System.out.println("repair function start here");
+                                    break;
+                                case 4:
+                                    System.out.println("Previous menu: ");
+                                    break;
+                                default:
+                                    System.out.println("Error, wrong number");
+
+                            }
+
+                        } while (select != 4);
+                        break;
+                    } else {
+                        System.out.println("Your garage is empty!");
+                        break;
+                    }
                 case 3:
                     do {
                         System.out.println("1) Check your bank account");
@@ -143,14 +147,14 @@ public class Main {
                                         case 1:
                                             player.gameCash = player.gameCash - 1000.0;
                                             System.out.println("You choose newspaper ad. You gain 2 clients. Your money: " + player.gameCash);
-                                            listOfClients.listOfClients.add(new Client());
-                                            listOfClients.listOfClients.add(new Client());
+                                            listOfClients.listOfClients.put(listOfClients.listOfClients.size() + 1, new Client());
+                                            listOfClients.listOfClients.put(listOfClients.listOfClients.size() + 1, new Client());
                                             numberOfTurns++;
                                             break;
                                         case 2:
                                             player.gameCash = player.gameCash - 700.0;
                                             System.out.println("You choose internet ad. You gain 1 clients. Your money: " + player.gameCash);
-                                            listOfClients.listOfClients.add(new Client());
+                                            listOfClients.listOfClients.put(listOfClients.listOfClients.size() + 1, new Client());
                                             numberOfTurns++;
                                             break;
                                         case 3:

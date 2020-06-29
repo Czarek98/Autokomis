@@ -71,7 +71,7 @@ public class Car {
 
     @Override
     public String toString() {
-        return "\nbrand: " + this.brand + '\'' +
+        return "brand: " + this.brand + '\'' +
                 ", mileage: " + this.roundTheNumber(mileage) + "km" + '\'' +
                 ", color: " + this.color + '\'' +
                 ", segment: '" + this.segment + '\'' +

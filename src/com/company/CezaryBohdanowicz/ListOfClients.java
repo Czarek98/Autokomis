@@ -3,40 +3,36 @@ package com.company.CezaryBohdanowicz;
 import com.company.CezaryBohdanowicz.Human.Client;
 import com.company.CezaryBohdanowicz.Human.Human;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class ListOfClients extends Client {
 
+    public Map<Integer, Client> listOfClients;
+
     public ListOfClients() {
-        this.listOfClients = new HashSet<Client>();
+        this.listOfClients = new HashMap<>();
     }
 
-    public Set<Client> listOfClients;
-    public Set<Car> listOfClientsCar;
 
     @Override
     public String toString() {
-        return "\nListOfClients{" +
-                "listOfClients=" + listOfClients +
-                '}';
+        return "\nlistOfClients=";
     }
 
-    public void addClient() {
-        this.listOfClients.add(new Client());
+    public void addClient(Integer indexOfClient, Client client) {
+        this.listOfClients.put(indexOfClient, client);
     }
 
-    public void removeClient(Client client) {
-        this.listOfClients.remove(client);
-    }
-
-    public void addCar(Car car) {
-        this.listOfClientsCar.add(new Car());
+    public void removeClient(Integer indexOfClient) {
+        this.listOfClients.remove(indexOfClient);
     }
 
     public Client getClient(Integer indexOfClient) {
-        Client[] myArray = new Client[listOfClients.size()];
-        listOfClients.toArray(myArray);
-        return myArray[indexOfClient];
+        return listOfClients.get(indexOfClient);
     }
+
+
 }
