@@ -4,6 +4,7 @@ import com.company.CezaryBohdanowicz.*;
 
 import java.text.DecimalFormat;
 import java.util.HashMap;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Player extends Human implements Saleable, Boughtable, Repairable {
 
@@ -13,6 +14,9 @@ public class Player extends Human implements Saleable, Boughtable, Repairable {
     public Car car;
     public Double gameCash;
     public Double tax = 0.02;
+
+    Double allRepairProfit = ThreadLocalRandom.current().nextDouble(1000.0, 10000.0 + 1);
+    Double randomProfit = ThreadLocalRandom.current().nextDouble(1.0, 1000.0 + 1);
 
 
     public Player(String firstname, String lastname, Double gameCash) {
@@ -50,6 +54,20 @@ public class Player extends Human implements Saleable, Boughtable, Repairable {
 
         this.setGameCash(this.getGameCash() + this.myCars.get(indexOfCar).price);
         this.gameCash = this.gameCash + (this.myCars.get(indexOfCar).price * tax);
+
+        if (this.myCars.get(indexOfCar).part.gearbox = true) {
+            if (this.myCars.get(indexOfCar).part.brakes = true) {
+                if (this.myCars.get(indexOfCar).part.body = true) {
+                    if (this.myCars.get(indexOfCar).part.suspension = true) {
+                        if (this.myCars.get(indexOfCar).part.engine = true) {
+                            this.gameCash = this.gameCash + allRepairProfit;
+                        }
+                    }
+                }
+            }
+        } else {
+            this.gameCash = gameCash + randomProfit;
+        }
         System.out.println(this.firstname + " sold " + this.myCars.get(indexOfCar).brand +
                 " to: " + listOfClients.listOfClients.get(indexOfClient).firstname + " for " +
                 roundTheNumber(this.myCars.get(indexOfCar).price));

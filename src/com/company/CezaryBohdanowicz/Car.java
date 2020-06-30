@@ -31,6 +31,10 @@ public class Car {
         this.price = price;
     }
 
+    public String getSegment() {
+        return segment;
+    }
+
     public Car() {
 
         this.brand = carGenerator();
