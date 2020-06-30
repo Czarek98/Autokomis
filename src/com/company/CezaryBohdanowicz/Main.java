@@ -1,10 +1,9 @@
 package com.company.CezaryBohdanowicz;
 
 import com.company.CezaryBohdanowicz.Human.Client;
-import com.company.CezaryBohdanowicz.Human.Human;
 import com.company.CezaryBohdanowicz.Human.Player;
 
-import java.awt.*;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Main {
@@ -13,15 +12,16 @@ public class Main {
 
         int mainSelect;
         int select;
-        Integer clientIndex;
-        Integer carIndex;
-        Integer buySelect;
+        int clientIndex;
+        int carIndex;
+        int buySelect;
+        double startGameCash = 100000.0;
         int numberOfTurns = 0;
         Scanner input = new Scanner(System.in);
         ListOfCars listOfCars = new ListOfCars();
         ListOfClients listOfClients = new ListOfClients();
         MyCars myCars = new MyCars();
-        Player player = new Player("Cezary", "Bohdanowicz", 1000000.0);
+        Player player = new Player("Cezary", "Bohdanowicz", startGameCash);
         for (int i = 1; i < 6; i++) {
             listOfCars.listOfCars.put(i, new Car());
         }
@@ -29,7 +29,15 @@ public class Main {
             listOfClients.listOfClients.put(i, new Client());
         }
 
+
         do {
+            DecimalFormat df = new DecimalFormat(".00");
+            if (player.gameCash >= startGameCash * 2) {
+                System.out.println("You won the game");
+                System.out.println("Turns: " + numberOfTurns);
+                System.out.println("Cash: " + df.format(player.gameCash));
+                break;
+            }
             System.out.println("1) Show list of cars to buy ");
             System.out.println("2) Show " + player.firstname + " list of cars ");
             System.out.println("3) Players account");
@@ -55,7 +63,7 @@ public class Main {
                         switch (select) {
                             case 1:
                                 System.out.println(listOfCars.listOfCars);
-                                System.out.println(player.firstname + " money: " + player.gameCash);
+                                System.out.println(player.firstname + " money: " + df.format(player.gameCash));
                                 System.out.print("Select car: ");
                                 buySelect = input.nextInt();
 
@@ -100,11 +108,14 @@ public class Main {
                                     System.out.println("input, to select a car to wash");
                                     carIndex = input.nextInt();
                                     System.out.println("wash function start here");
+                                    player.gameCash -= 5.0;
+                                    player.myCars.get(carIndex).price += 100.0;
                                     break;
                                 case 3:
                                     System.out.println("input, to select a car to repair");
                                     carIndex = input.nextInt();
-                                    System.out.println("repair function start here");
+                                    System.out.println("repair funciotn start here");
+                                    player.Repair(carIndex);
                                     break;
                                 case 4:
                                     System.out.println("Previous menu: ");
@@ -129,7 +140,7 @@ public class Main {
                         select = input.nextInt();
                         switch (select) {
                             case 1:
-                                System.out.println("You have: " + player.gameCash);
+                                System.out.println("You have: " + df.format(player.gameCash));
                                 break;
                             case 2:
                                 System.out.println("Player.getFirstname transaction history: ");
@@ -138,7 +149,7 @@ public class Main {
                             case 3:
                                 do {
                                     System.out.println("Select the type of ad");
-                                    System.out.println("Your money: " + player.gameCash);
+                                    System.out.println("Your money: " + df.format(player.gameCash));
                                     System.out.println("1) Newspaper ad: 1000zł");
                                     System.out.println("2) Internet ad: 700zł");
                                     System.out.println("3) Back");
@@ -146,14 +157,14 @@ public class Main {
                                     switch (select) {
                                         case 1:
                                             player.gameCash = player.gameCash - 1000.0;
-                                            System.out.println("You choose newspaper ad. You gain 2 clients. Your money: " + player.gameCash);
+                                            System.out.println("You choose newspaper ad. You gain 2 clients. Your money: " + df.format(player.gameCash));
                                             listOfClients.listOfClients.put(listOfClients.listOfClients.size() + 1, new Client());
                                             listOfClients.listOfClients.put(listOfClients.listOfClients.size() + 1, new Client());
                                             numberOfTurns++;
                                             break;
                                         case 2:
                                             player.gameCash = player.gameCash - 700.0;
-                                            System.out.println("You choose internet ad. You gain 1 clients. Your money: " + player.gameCash);
+                                            System.out.println("You choose internet ad. You gain 1 clients. Your money: " + df.format(player.gameCash));
                                             listOfClients.listOfClients.put(listOfClients.listOfClients.size() + 1, new Client());
                                             numberOfTurns++;
                                             break;

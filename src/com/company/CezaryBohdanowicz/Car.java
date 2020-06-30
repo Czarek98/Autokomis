@@ -21,28 +21,14 @@ public class Car {
     public String budget = "Budget";
     public Double price;
     public Parts part;
-    public Integer indexOfCar;
-    public Boolean wash;
-    public ArrayList<Human> owners = new ArrayList<>();
     Double randomMileage = ThreadLocalRandom.current().nextDouble(1.0, 400000.0 + 1);
     Double randomBudget = ThreadLocalRandom.current().nextDouble(5000.0, 50000.0 + 1);
     Double randomStandard = ThreadLocalRandom.current().nextDouble(51000.0, 120000.0 + 1);
     Double randomPremium = ThreadLocalRandom.current().nextDouble(121000.0, 1000000.0 + 1);
 
-    public String getBrand() {
-        return brand;
-    }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public Double getMileage() {
-        return mileage;
-    }
-
-    public Double getPrice() {
-        return price;
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public Car() {
@@ -56,13 +42,6 @@ public class Car {
 
     }
 
-    public Parts getpart() {
-        return part;
-    }
-
-    public void setpart() {
-        this.part = part;
-    }
 
     public String roundTheNumber(Double notRound) {
         DecimalFormat df = new DecimalFormat(".00");
@@ -117,4 +96,6 @@ public class Car {
             return randomBudget;
 
     }
+
+
 }

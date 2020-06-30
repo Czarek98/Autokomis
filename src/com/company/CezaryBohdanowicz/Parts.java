@@ -10,36 +10,6 @@ public class Parts {
     public boolean body;
     public boolean gearbox;
 
-    public void setBrakesBroke() {
-        this.brakes = isBroken(false);
-        System.out.println("Brakes are broken");
-    }
-
-    public void setSuspensionBroke() {
-        this.suspension = isBroken(false);
-        System.out.println("Suspension is broken");
-    }
-
-    public void setEngineBroke() {
-        this.engine = isBroken(false);
-        System.out.println("Engine is broken");
-    }
-
-    public void setBodyBroke() {
-        this.body = isBroken(false);
-        System.out.println("body is broken");
-    }
-
-    public void setGearboxBroke() {
-        this.gearbox = isBroken(false);
-        System.out.println("Gearbox is broken");
-    }
-
-    public Parts setPartRepair(boolean part) {
-        part = true;
-        System.out.println("is in good condition");
-        return null;
-    }
 
     public String checkPart(boolean part) {
         if (part = isBroken(part)) {
